@@ -3,12 +3,12 @@
 /// @param {Struct.VerrificTestBranch} branch
 /// @param {Struct.VerrificTest} test
 function VerrificTestNode(branch, test) constructor {
-    self.branch = branch;
+    self.parent = branch;
     self.test = test;
     self.result = undefined;
     self.status = VerrificRunStatus.Idle;
     
-    self.branch.add_status(status);
+    self.parent.add_status(status);
     
     /// @func schedule(runner,predicate)
     /// @desc Schedules the test node to run within the given runner.
@@ -16,13 +16,13 @@ function VerrificTestNode(branch, test) constructor {
     /// @param {Function} [predicate]
     /// @return {Undefined}
     static schedule = function(runner, predicate) {
-        if (status == VerrificRunStatus.Pending || (!is_undefined(predicate) && !predicate(self)))
+        if (self.status == VerrificRunStatus.Pending || (!is_undefined(predicate) && !predicate(self)))
             return;
         
-        branch.subtract_status(status);
-        result = undefined;
-        status = VerrificRunStatus.Pending;
-        branch.add_status(status);
+        self.parent.subtract_status(self.status);
+        self.result = undefined;
+        self.status = VerrificRunStatus.Pending;
+        self.parent.add_status(self.status);
         runner.enqueue_test(self);
     }
     
@@ -30,10 +30,10 @@ function VerrificTestNode(branch, test) constructor {
     /// @desc Runs the underlying test and applies its result.
     /// @return {Undefined}
     static run = function() {
-        branch.subtract_status(status);
-        result = test.run();
-        status = map_test_status(result.status);
-        branch.add_status(status);
+        self.parent.subtract_status(self.status);
+        self.result = test.run();
+        self.status = map_test_status(result.status);
+        self.parent.add_status(status);
     }
     
     /// @ignore

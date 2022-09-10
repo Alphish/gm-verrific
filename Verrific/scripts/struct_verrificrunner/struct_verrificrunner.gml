@@ -2,11 +2,11 @@
 /// @desc Contructor for the Verrific tests runner. Can be configured by passing a corresponding struct.
 /// @param {Struct} [config]
 function VerrificRunner(config = undefined) constructor {
-    config = config ?? {};
-    batch_time = config[$ "batch_time"] ?? 40;
-    on_test_complete = config[$ "on_test_complete"];
+    config ??= {};
+    self.batch_time = config[$ "batch_time"] ?? 40;
+    self.on_test_complete = config[$ "on_test_complete"];
     
-    pending_tests = [];
+    self.pending_tests = [];
     
     // ----------
     // Scheduling
@@ -26,12 +26,16 @@ function VerrificRunner(config = undefined) constructor {
     /// @param {Struct} test
     /// @return {Undefined}
     static enqueue_test = function(test) {
-        array_push(pending_tests, test);
+        array_push(self.pending_tests, test);
     }
     
     // -------
     // Running
     // -------
+    
+    static has_pending_tests = function() {
+        return array_length(self.pending_tests) > 0;
+    }
     
     /// @func run_batch()
     /// @desc Runs a batch of tests for a designated batch time.
@@ -39,19 +43,19 @@ function VerrificRunner(config = undefined) constructor {
     /// @return {Undefined}
     static run_batch = function() {
         var start_time = get_timer();
-        var milliseconds_difference = batch_time * 1000;
+        var milliseconds_difference = self.batch_time * 1000;
         var end_time = start_time + milliseconds_difference;
 
-        do {
-            if (array_length(pending_tests) == 0)
-                return;
-            
-            var test = pending_tests[0];
-            array_delete(pending_tests, 0, 1);
+        while (has_pending_tests()) {
+            var test = self.pending_tests[0];
+            array_delete(self.pending_tests, 0, 1);
             test.run();
             
-            if (!is_undefined(on_test_complete))
-                on_test_complete(test);
-        } until (get_timer() > end_time);
+            if (!is_undefined(self.on_test_complete))
+                self.on_test_complete(test);
+            
+            if (get_timer() > end_time)
+                return;
+        }
     }
 }

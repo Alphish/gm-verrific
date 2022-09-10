@@ -12,16 +12,17 @@ function VerrificAsserter(context) constructor {
     /// @desc Marks the test as asserted.
     /// @return {Bool}
     static pass = function() {
-        context.is_asserted = true;
+        self.context.is_asserted = true;
         return true;
     }
     
     /// @func add_failure(failure)
     /// @desc Adds a failure to the test context and marks it as failed.
+    /// @param {Struct.VerrificTestFailure} failure
     /// @return {Bool}
     static add_failure = function(failure) {
-        array_push(context.failures, failure);
-        context.is_failed = true;
+        array_push(self.context.failures, failure);
+        self.context.is_failed = true;
         return false;
     }
     
@@ -44,9 +45,6 @@ function VerrificAsserter(context) constructor {
     /// @param {String} message
     /// @return {Bool}
     static assert = function(condition, message) {
-        if (condition)
-            return fail(message);
-        else
-            return pass();
+        return condition ? pass() : fail(message);
     }
 }

@@ -14,7 +14,7 @@ function VerrificTestContext() constructor {
     /// @desc Marks the test as asserted.
     /// @return {Bool}
     static pass = function() {
-        return asserter.pass();
+        return self.asserter.pass();
     }
     
     /// @func fail(message)
@@ -22,7 +22,7 @@ function VerrificTestContext() constructor {
     /// @param {String} message
     /// @return {Bool}
     static fail = function(message) {
-        return asserter.fail(message);
+        return self.asserter.fail(message);
     }
     
     /// @func assert(condition,message)
@@ -31,6 +31,6 @@ function VerrificTestContext() constructor {
     /// @param {String} message
     /// @return {Bool}
     static assert = function(condition, message) {
-        return asserter.assert(condition, message);
+        return self.asserter.assert(condition, message);
     }
 }

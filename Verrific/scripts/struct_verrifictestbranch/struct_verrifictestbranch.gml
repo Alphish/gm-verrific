@@ -1,40 +1,63 @@
 /// @func VerrificTestBranch(branch,suite)
 /// @desc Constructor for the Verrific test tree branch.
+///       After creating, the branch needs to be populated using with_suite(...) method.
 /// @param {Struct.VerrificTestBranch, Undefined} branch
-/// @param {Struct.VerrificTestSuite} suite
-function VerrificTestBranch(branch, suite) constructor {
+function VerrificTestBranch(branch) constructor {
     // -----
     // Setup
     // -----
     
     self.parent = branch;
-    self.suite = suite;
     self.subbranches = [];
     self.nodes = [];
+    self.suite = undefined;
+    
     self.status = VerrificRunStatus.Idle;
-    self.substatuses = [0 /* Idle */, 0 /* Pending */, 0 /* Stopped */, 0 /* Passed */, 0 /* Unverified */, 0 /* Failed */, 0 /* Crashed */];
+    self.substatuses = [
+        0 /* Idle */,
+        0 /* Pending */,
+        0 /* Stopped */,
+        0 /* Passed */,
+        0 /* Unverified */,
+        0 /* Failed */,
+        0 /* Crashed */
+        ];
     
-    build_subbranches(suite.suites);
-    build_nodes(suite.tests);
-    
-    /// @ignore
-    /// Internal: Builds inner test branches from the given test suites.
-    static build_subbranches = function(suites) {
-        var count = array_length(suites);
-        for (var i = 0; i < count; i++) {
-            var subbranch = new VerrificTestBranch(self, suites[i]);
-            array_push(subbranches, subbranch);
+    /// @func with_suite(suite)
+    /// @desc Populates a branch from the given test suite.
+    /// @param {Struct.VerrificTestSuite} suite
+    /// @return {Struct.VerrificTestBranch}
+    static with_suite = function(suite) {
+        self.suite = suite;
+        
+        var suites_count = array_length(suite.suites);
+        for (var i = 0; i < suites_count; i++) {
+            var subbranch = create_subbranch().with_suite(suite.suites[i]);
+            array_push(self.subbranches, subbranch);
         }
+        
+        var nodes_count = array_length(suite.tests);
+        for (var i = 0; i < nodes_count; i++) {
+            var node = create_node(suite.tests[i]);
+            array_push(self.nodes, node);
+        }
+        
+        return self;
     }
     
-    /// @ignore
-    /// Internal: Builds test nodes from the given tests.
-    static build_nodes = function(tests) {
-        var count = array_length(tests);
-        for (var i = 0; i < count; i++) {
-            var node = new VerrificTestNode(self, tests[i]);
-            array_push(nodes, node);
-        }
+    /// @func create_subbranch()
+    /// @desc Creates a nested test tree branch from a given test suite.
+    ///       Can be overriden in derived test branch types.
+    static create_subbranch = function() {
+        return new VerrificTestBranch(self);
+    }
+    
+    /// @func create_node(test)
+    /// @desc Creates a test tree node from a given test.
+    ///       Can be overriden in derived test branch types.
+    /// @param {Struct.VerrificTest} test
+    static create_node = function(test) {
+        return new VerrificTestNode(self, test);
     }
     
     // ----------
@@ -47,14 +70,14 @@ function VerrificTestBranch(branch, suite) constructor {
     /// @param {Function} [predicate]
     /// @return {Undefined}
     static schedule = function(runner, predicate) {
-        var branches_count = array_length(subbranches);
+        var branches_count = array_length(self.subbranches);
         for (var i = 0; i < branches_count; i++) {
-            subbranches[i].schedule(runner, predicate);
+            self.subbranches[i].schedule(runner, predicate);
         }
         
-        var nodes_count = array_length(nodes);
+        var nodes_count = array_length(self.nodes);
         for (var i = 0; i < nodes_count; i++) {
-            nodes[i].schedule(runner, predicate);
+            self.nodes[i].schedule(runner, predicate);
         }
     }
     
@@ -67,13 +90,13 @@ function VerrificTestBranch(branch, suite) constructor {
     /// @param {Real} status
     /// @return {Undefined}
     static add_status = function(status) {
-        var to_recalculate = substatuses[status] == 0;
-        substatuses[status]++;
+        var to_recalculate = self.substatuses[status] == 0;
+        self.substatuses[status]++;
         if (to_recalculate)
             self.status = recalculate_status();
         
-        if (!is_undefined(parent))
-            parent.add_status(status);
+        if (!is_undefined(self.parent))
+            self.parent.add_status(status);
     }
     
     /// @func subtract_status(status)
@@ -81,29 +104,29 @@ function VerrificTestBranch(branch, suite) constructor {
     /// @param {Real} status
     /// @return {Undefined}
     static subtract_status = function(status) {
-        substatuses[status]--;
-        var to_recalculate = substatuses[status] == 0;
+        self.substatuses[status]--;
+        var to_recalculate = self.substatuses[status] == 0;
         if (to_recalculate)
             self.status = recalculate_status();
         
-        if (!is_undefined(parent))
-            parent.subtract_status(status);
+        if (!is_undefined(self.parent))
+            self.parent.subtract_status(status);
     }
     
     /// @ignore
     /// Internal: Recalculates the overall status based on the inner statuses counts.
     static recalculate_status = function() {
-        if (substatuses[VerrificRunStatus.Stopped] > 0)
-            return VerrificRunStatus.Stopped;
-        if (substatuses[VerrificRunStatus.Crashed] > 0)
+        if (self.substatuses[VerrificRunStatus.Crashed] > 0)
             return VerrificRunStatus.Crashed;
-        if (substatuses[VerrificRunStatus.Failed] > 0)
+        if (self.substatuses[VerrificRunStatus.Failed] > 0)
             return VerrificRunStatus.Failed;
-        if (substatuses[VerrificRunStatus.Unverified] > 0)
+        if (self.substatuses[VerrificRunStatus.Unverified] > 0)
             return VerrificRunStatus.Unverified;
-        if (substatuses[VerrificRunStatus.Pending] > 0)
+        if (self.substatuses[VerrificRunStatus.Stopped] > 0)
+            return VerrificRunStatus.Stopped;
+        if (self.substatuses[VerrificRunStatus.Pending] > 0)
             return VerrificRunStatus.Pending;
-        if (substatuses[VerrificRunStatus.Passed] > 0)
+        if (self.substatuses[VerrificRunStatus.Passed] > 0)
             return VerrificRunStatus.Passed;
         else
             return VerrificRunStatus.Idle;

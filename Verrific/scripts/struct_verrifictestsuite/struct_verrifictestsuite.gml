@@ -15,7 +15,7 @@ function VerrificTestSuite(description) constructor {
         if (!is_struct(suite))
             suite = new suite();
         
-        array_push(suites, suite);
+        array_push(self.suites, suite);
     }
     
     /// @func add_test(description,callback)
