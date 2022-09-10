@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMProject",
+  "resourceVersion": "1.6",
+  "name": "Verrific",
   "resources": [
     {"id":{"name":"struct_VerrificTestFailure","path":"scripts/struct_VerrificTestFailure/struct_VerrificTestFailure.yy",},"order":6,},
     {"id":{"name":"struct_VerrificTestSuite","path":"scripts/struct_VerrificTestSuite/struct_VerrificTestSuite.yy",},"order":1,},
@@ -48,10 +51,6 @@
   ],
   "IncludedFiles": [],
   "MetaData": {
-    "IDEVersion": "2022.800.0.161",
+    "IDEVersion": "2022.8.0.34",
   },
-  "resourceVersion": "1.6",
-  "name": "Verrific",
-  "tags": [],
-  "resourceType": "GMProject",
 }
