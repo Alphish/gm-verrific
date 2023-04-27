@@ -2,10 +2,10 @@
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
   "name": "struct_VerrificAsserter",
-  "isDnD": false,
   "isCompatibility": false,
+  "isDnD": false,
   "parent": {
-    "name": "Core",
-    "path": "folders/Packages/Alphish/Verrific/Core.yy",
+    "name": "Assertions",
+    "path": "folders/_Packages/Alphish/Verrific/Testing/Assertions.yy",
   },
 }
