@@ -1,56 +1,13 @@
 {
   "resourceType": "GMProject",
-  "resourceVersion": "1.6",
   "name": "Verrific",
-  "resources": [
-    {"id":{"name":"struct_VerrificTestFailure","path":"scripts/struct_VerrificTestFailure/struct_VerrificTestFailure.yy",},"order":6,},
-    {"id":{"name":"struct_VerrificTestSuite","path":"scripts/struct_VerrificTestSuite/struct_VerrificTestSuite.yy",},"order":1,},
-    {"id":{"name":"struct_VerrificTestContext","path":"scripts/struct_VerrificTestContext/struct_VerrificTestContext.yy",},"order":2,},
-    {"id":{"name":"struct_VerrificTestNode","path":"scripts/struct_VerrificTestNode/struct_VerrificTestNode.yy",},"order":1,},
-    {"id":{"name":"struct_VerrificTest","path":"scripts/struct_VerrificTest/struct_VerrificTest.yy",},"order":0,},
-    {"id":{"name":"struct_VerrificTestBranch","path":"scripts/struct_VerrificTestBranch/struct_VerrificTestBranch.yy",},"order":2,},
-    {"id":{"name":"enum_VerrificRunStatus","path":"scripts/enum_VerrificRunStatus/enum_VerrificRunStatus.yy",},"order":3,},
-    {"id":{"name":"enum_VerrificTestStatus","path":"scripts/enum_VerrificTestStatus/enum_VerrificTestStatus.yy",},"order":5,},
-    {"id":{"name":"struct_VerrificRunner","path":"scripts/struct_VerrificRunner/struct_VerrificRunner.yy",},"order":0,},
-    {"id":{"name":"struct_VerrificAsserter","path":"scripts/struct_VerrificAsserter/struct_VerrificAsserter.yy",},"order":3,},
-    {"id":{"name":"struct_VerrificTestResult","path":"scripts/struct_VerrificTestResult/struct_VerrificTestResult.yy",},"order":4,},
-    {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":1,},
   ],
-  "Options": [
-    {"name":"Android","path":"options/android/options_android.yy",},
-    {"name":"HTML5","path":"options/html5/options_html5.yy",},
-    {"name":"iOS","path":"options/ios/options_ios.yy",},
-    {"name":"Linux","path":"options/linux/options_linux.yy",},
-    {"name":"macOS","path":"options/mac/options_mac.yy",},
-    {"name":"Main","path":"options/main/options_main.yy",},
-    {"name":"tvOS","path":"options/tvos/options_tvos.yy",},
-    {"name":"Windows","path":"options/windows/options_windows.yy",},
-    {"name":"operagx","path":"options/operagx/options_operagx.yy",},
-  ],
-  "defaultScriptType": 1,
-  "isEcma": false,
   "configs": {
-    "name": "Default",
     "children": [],
   },
-  "RoomOrderNodes": [
-    {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
-  ],
   "Folders": [
-    {"folderPath":"folders/Packages.yy","order":0,"resourceVersion":"1.0","name":"Packages","tags":[],"resourceType":"GMFolder",},
-    {"folderPath":"folders/Packages/Alphish.yy","order":1,"resourceVersion":"1.0","name":"Alphish","tags":[],"resourceType":"GMFolder",},
-    {"folderPath":"folders/Packages/Alphish/Verrific.yy","order":0,"resourceVersion":"1.0","name":"Verrific","tags":[],"resourceType":"GMFolder",},
-    {"folderPath":"folders/Packages/Alphish/Verrific/Core.yy","order":4,"resourceVersion":"1.0","name":"Core","tags":[],"resourceType":"GMFolder",},
-    {"folderPath":"folders/Packages/Alphish/Verrific/Runner.yy","order":5,"resourceVersion":"1.0","name":"Runner","tags":[],"resourceType":"GMFolder",},
-  ],
-  "AudioGroups": [
-    {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
-  ],
-  "TextureGroups": [
-    {"isScaled":true,"compressFormat":"bz2","autocrop":true,"border":2,"mipsToGenerate":0,"groupParent":null,"targets":-1,"resourceVersion":"1.3","name":"Default","resourceType":"GMTextureGroup",},
   ],
   "IncludedFiles": [],
   "MetaData": {
-    "IDEVersion": "2022.8.0.34",
   },
 }
