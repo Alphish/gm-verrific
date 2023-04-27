@@ -1,38 +1,22 @@
-/// @func VerrificTest(description, callback)
-/// @desc Constructor for the Verrific test.
-/// @param {String} description
-/// @param {Function} callback
-function VerrificTest(description, callback) constructor {
-    self.description = description;
-    self.callback = callback;
+/// @func VerrificTest(run)
+/// @desc A parent struct for Verrific test instances.
+/// @param {Struct.VerrificTestRun} run         The test run responsible for the test.
+function VerrificTest(_run) constructor {
+    test_run = _run;
     
-    /// @func run()
-    /// @desc Runs the test and returns the result.
-    /// @return {Struct.VerrificTestResult}
-    static run = function() {
-        var context = new VerrificTestContext();
-        try {
-            self.callback(context);
-            return create_basic_result(context);
-        } catch (exception) {
-            return create_crash_result(context, exception);
-        }
+    // --------------
+    // Tests handling
+    // --------------
+    
+    /// @func test_execute()
+    /// @desc Executes the test logic. Must be implemented in any VerrificTest child struct.
+    static test_execute = function() {
+        throw $"{instanceof(self)}.test_execute() was not implemented.";
     }
     
-    /// @ignore
-    /// Internal: Creates a non-crash test result based on the test context.
-    static create_basic_result = function(context) {
-        if (context.is_failed)
-            return new VerrificTestResult(VerrificTestStatus.Failed, "Test failed.", context.failures, undefined);
-        else if (!context.is_asserted)
-            return new VerrificTestResult(VerrificTestStatus.Unverified, "Test had no assertions.", [], undefined);
-        else
-            return new VerrificTestResult(VerrificTestStatus.Passed, "Test passed", [], undefined);
-    }
-    
-    /// @ignore
-    /// Internal: Creates a crash test result based on the test context and the exception caught.
-    static create_crash_result = function(context, exception) {
-        return new VerrificTestResult(VerrificTestStatus.Crashed, "Test crashed.", context.failures, exception);
+    /// @func test_cleanup()
+    /// @desc Performs the cleanup after finishing the test. Doesn't perform any cleanup tasks by default.
+    static test_cleanup = function() {
+        // by default, there's no special cleanup logic
     }
 }

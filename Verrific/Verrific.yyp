@@ -26,9 +26,12 @@
   "resources": [
     {"id":{"name":"struct_VerrificBreak","path":"scripts/struct_VerrificBreak/struct_VerrificBreak.yy",},},
     {"id":{"name":"struct_VerrificFailure","path":"scripts/struct_VerrificFailure/struct_VerrificFailure.yy",},},
+    {"id":{"name":"struct_VerrificTestStub","path":"scripts/struct_VerrificTestStub/struct_VerrificTestStub.yy",},},
+    {"id":{"name":"struct_VerrificTestRun","path":"scripts/struct_VerrificTestRun/struct_VerrificTestRun.yy",},},
     {"id":{"name":"struct_VerrificMessage","path":"scripts/struct_VerrificMessage/struct_VerrificMessage.yy",},},
     {"id":{"name":"struct_VerrificCrash","path":"scripts/struct_VerrificCrash/struct_VerrificCrash.yy",},},
     {"id":{"name":"enum_VerrificStatus","path":"scripts/enum_VerrificStatus/enum_VerrificStatus.yy",},},
+    {"id":{"name":"struct_VerrificTest","path":"scripts/struct_VerrificTest/struct_VerrificTest.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "RoomOrderNodes": [

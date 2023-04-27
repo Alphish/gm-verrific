@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "struct_VerrificTest",
+  "name": "struct_VerrificTestRun",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
