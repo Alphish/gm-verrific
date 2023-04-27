@@ -11,6 +11,11 @@
   },
   "defaultScriptType": 1,
   "Folders": [
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"_Packages","folderPath":"folders/_Packages.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Alphish","folderPath":"folders/_Packages/Alphish.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Verrific","folderPath":"folders/_Packages/Alphish/Verrific.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Testing","folderPath":"folders/_Packages/Alphish/Verrific/Testing.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Messages","folderPath":"folders/_Packages/Alphish/Verrific/Testing/Messages.yy",},
   ],
   "IncludedFiles": [],
   "isEcma": false,
@@ -19,6 +24,11 @@
     "IDEVersion": "2023.400.0.324",
   },
   "resources": [
+    {"id":{"name":"struct_VerrificBreak","path":"scripts/struct_VerrificBreak/struct_VerrificBreak.yy",},},
+    {"id":{"name":"struct_VerrificFailure","path":"scripts/struct_VerrificFailure/struct_VerrificFailure.yy",},},
+    {"id":{"name":"struct_VerrificMessage","path":"scripts/struct_VerrificMessage/struct_VerrificMessage.yy",},},
+    {"id":{"name":"struct_VerrificCrash","path":"scripts/struct_VerrificCrash/struct_VerrificCrash.yy",},},
+    {"id":{"name":"enum_VerrificStatus","path":"scripts/enum_VerrificStatus/enum_VerrificStatus.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "RoomOrderNodes": [
