@@ -8,7 +8,7 @@ function VerrificTestRun(_stub) constructor {
     
     is_finished = false;
     is_asserted = false;
-    is_inconclusive = false;
+    is_unsure = false;
     is_failed = false;
     is_crashed = false;
     
@@ -60,7 +60,7 @@ function VerrificTestRun(_stub) constructor {
     
     /// @func record_message(message)
     /// @desc Records a message from the test progress.
-    /// @param {Struct.VerrificMessage} message     The message to record.
+    /// @arg {Struct.VerrificMessage} message     The message to record.
     static record_message = function(_message) {
         if (is_string(_message))
             _message = new VerrificMessage(_message);
@@ -78,7 +78,7 @@ function VerrificTestRun(_stub) constructor {
     
     /// @func record_failure(failure)
     /// @desc Records a failure encountered during the test.
-    /// @param {Struct.VerrificFailure, String} failure     The failure to record.
+    /// @arg {Struct.VerrificFailure, String} failure     The failure to record.
     static record_failure = function(_failure) {
         if (is_string(_failure))
             _failure = new VerrificFailure(_failure);
@@ -96,11 +96,11 @@ function VerrificTestRun(_stub) constructor {
         throw new VerrificBreak(_message ?? "Interrupting the test because of assertion failures.");
     }
     
-    /// @func finish_as_inconclusive([message])
-    /// @desc Interrupts the test with the inconclusive result.
-    /// @arg {String} message           A message to explain why the test is inconclusive.
-    static finish_as_inconclusive = function(_message = undefined) {
-        is_inconclusive = false;
+    /// @func finish_unsure([message])
+    /// @desc Interrupts the test with the unsure result (neither passing nor failure).
+    /// @arg {String} message           A message to explain why the test is not conclusive.
+    static finish_unsure = function(_message = undefined) {
+        is_unsure = false;
         throw new VerrificBreak(_message ?? "The test couldn't be resolved as passing or failing.");
     }
     
@@ -123,12 +123,12 @@ function VerrificTestRun(_stub) constructor {
             return VerrificStatus.Crashed;
         else if (is_failed)
             return VerrificStatus.Failed;
-        else if (is_inconclusive)
-            return VerrificStatus.Inconclusive;
+        else if (is_unsure)
+            return VerrificStatus.Unsure;
         else if (!is_finished)
             return VerrificStatus.Running;
         else if (!is_asserted)
-            return VerrificStatus.Unasserted;
+            return VerrificStatus.Unproven;
         else
             return VerrificStatus.Passed;
     }
