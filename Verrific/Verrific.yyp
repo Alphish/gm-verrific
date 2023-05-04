@@ -33,6 +33,7 @@
     {"id":{"name":"struct_VerrificFailure","path":"scripts/struct_VerrificFailure/struct_VerrificFailure.yy",},},
     {"id":{"name":"struct_VerrificTestStub","path":"scripts/struct_VerrificTestStub/struct_VerrificTestStub.yy",},},
     {"id":{"name":"struct_VerrificStatusCounter","path":"scripts/struct_VerrificStatusCounter/struct_VerrificStatusCounter.yy",},},
+    {"id":{"name":"struct_VerrificTreeLoader","path":"scripts/struct_VerrificTreeLoader/struct_VerrificTreeLoader.yy",},},
     {"id":{"name":"struct_VerrificNumericAssertion","path":"scripts/struct_VerrificNumericAssertion/struct_VerrificNumericAssertion.yy",},},
     {"id":{"name":"struct_VerrificSuite","path":"scripts/struct_VerrificSuite/struct_VerrificSuite.yy",},},
     {"id":{"name":"struct_VerrificTreeVisitor","path":"scripts/struct_VerrificTreeVisitor/struct_VerrificTreeVisitor.yy",},},
