@@ -35,6 +35,7 @@
     {"id":{"name":"struct_VerrificStatusCounter","path":"scripts/struct_VerrificStatusCounter/struct_VerrificStatusCounter.yy",},},
     {"id":{"name":"struct_VerrificNumericAssertion","path":"scripts/struct_VerrificNumericAssertion/struct_VerrificNumericAssertion.yy",},},
     {"id":{"name":"struct_VerrificSuite","path":"scripts/struct_VerrificSuite/struct_VerrificSuite.yy",},},
+    {"id":{"name":"struct_VerrificTreeVisitor","path":"scripts/struct_VerrificTreeVisitor/struct_VerrificTreeVisitor.yy",},},
     {"id":{"name":"struct_VerrificMethodTest","path":"scripts/struct_VerrificMethodTest/struct_VerrificMethodTest.yy",},},
     {"id":{"name":"struct_VerrificTestRun","path":"scripts/struct_VerrificTestRun/struct_VerrificTestRun.yy",},},
     {"id":{"name":"struct_VerrificMessage","path":"scripts/struct_VerrificMessage/struct_VerrificMessage.yy",},},
