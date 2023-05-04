@@ -316,7 +316,7 @@ function VerrificTest(_run) constructor {
     
     /// @func assert_is_instanceof_object(value,[onfailure])
     /// @desc Asserts that a given value is an instance of the given object type.
-    /// @arg {GMAsset.Object} object        The object type the value should be instance of.
+    /// @arg {Asset.GMObject} object        The object type the value should be instance of.
     /// @arg {Any} value                    The value to assert.
     /// @arg {String} onfailure             A custom message to show in case of a failure.
     static assert_is_instanceof_object = function(_object, _value, _onfailure = undefined) {
