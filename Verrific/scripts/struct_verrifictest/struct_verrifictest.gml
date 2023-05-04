@@ -1,6 +1,6 @@
 /// @func VerrificTest(run)
 /// @desc A parent struct for Verrific test instances.
-/// @param {Struct.VerrificTestRun} run         The test run responsible for the test.
+/// @arg {Struct.VerrificTestRun} run         The test run responsible for the test.
 function VerrificTest(_run) constructor {
     test_run = _run;
     test_asserter = new VerrificAsserter(_run); 
@@ -21,9 +21,34 @@ function VerrificTest(_run) constructor {
         // by default, there's no special cleanup logic
     }
     
-    /// ---------------
-    /// Core assertions
-    /// ---------------
+    // --------------
+    // Run operations
+    // --------------
+    
+    /// @func record_message(message)
+    /// @desc Records a message from the test progress.
+    /// @arg {Struct.VerrificMessage,String} message        The message to record.
+    static record_message = function(_message) {
+        return test_run.record_message(_message);
+    }
+    
+    /// @func ensure_no_failure([message])
+    /// @desc Makes sure no failures were encountered so far, interrupts the test otherwise.
+    /// @arg {String} message           A message to show if the interruption happened.
+    static ensure_no_failure = function(_message = undefined) {
+        return test_run.ensure_no_failure(_message);
+    }
+    
+    /// @func finish_unsure([message])
+    /// @desc Interrupts the test with the unsure result (neither passing nor failure).
+    /// @arg {String} message           A message to explain why the test is not conclusive.
+    static finish_unsure = function(_message = undefined) {
+        return test_run.finish_unsure(_message);
+    }
+    
+    // ---------------
+    // Core assertions
+    // ---------------
     
     #region
     
@@ -193,11 +218,27 @@ function VerrificTest(_run) constructor {
     }
 
     /// @func assert_is_real(value,[onfailure])
-    /// @desc Asserts that a given value is a real number.
+    /// @desc Asserts that a given value is a real value, other than a 64-bit integer.
     /// @arg {Any} value            The value to assert.
     /// @arg {String} onfailure     A custom message to show in case of a failure.
     static assert_is_real = function(_value, _onfailure = undefined) {
         return test_asserter.assert_is_real(_value, _onfailure)
+    }
+    
+    /// @func assert_is_a_number(value,[onfailure])
+    /// @desc Asserts that a given value is a finite number. For the purposes of assertion, bools don't count as numerics!
+    /// @arg {Any} value            The value to assert.
+    /// @arg {String} onfailure     A custom message to show in case of a failure.
+    static assert_is_a_number = function(_value, _onfailure = undefined) {
+        return test_asserter.assert_is_a_number(_value, _onfailure)
+    }
+
+    /// @func assert_is_numeric(value,[onfailure])
+    /// @desc Asserts that a given value is numeric. For the purposes of assertion, bools don't count as numerics!
+    /// @arg {Any} value            The value to assert.
+    /// @arg {String} onfailure     A custom message to show in case of a failure.
+    static assert_is_numeric = function(_value, _onfailure = undefined) {
+        return test_asserter.assert_is_numeric(_value, _onfailure)
     }
 
     /// @func assert_is_ptr(value,[onfailure])
