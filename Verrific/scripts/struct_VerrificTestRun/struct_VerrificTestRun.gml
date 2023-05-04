@@ -22,8 +22,10 @@ function VerrificTestRun(_stub) constructor {
             exit;
         
         execute_step();
-        if (is_finished)
+        if (is_finished) {
             execute_cleanup();
+            report_unproven();
+        }
     }
     
     /// @ignore
@@ -37,6 +39,14 @@ function VerrificTestRun(_stub) constructor {
         } catch (_exception) {
             handle_exception(_exception);
             is_finished = true;
+        }
+    }
+    
+    /// @ignore
+    static report_unproven = function() {
+        if (calculate_status() == VerrificStatus.Unproven) {
+            record_message(new VerrificMessage("Make at least one assertion to verify your results.", VerrificStatus.Unproven));
+            record_message(new VerrificMessage("Alternatively, call assert_pass() if the test not failing/crashing counts as a success.", VerrificStatus.Unproven));
         }
     }
     
@@ -60,7 +70,7 @@ function VerrificTestRun(_stub) constructor {
     
     /// @func record_message(message)
     /// @desc Records a message from the test progress.
-    /// @arg {Struct.VerrificMessage} message     The message to record.
+    /// @arg {Struct.VerrificMessage,String} message        The message to record.
     static record_message = function(_message) {
         if (is_string(_message))
             _message = new VerrificMessage(_message);
@@ -78,7 +88,7 @@ function VerrificTestRun(_stub) constructor {
     
     /// @func record_failure(failure)
     /// @desc Records a failure encountered during the test.
-    /// @arg {Struct.VerrificFailure, String} failure     The failure to record.
+    /// @arg {Struct.VerrificFailure,String} failure        The failure to record.
     static record_failure = function(_failure) {
         if (is_string(_failure))
             _failure = new VerrificFailure(_failure);
@@ -100,8 +110,8 @@ function VerrificTestRun(_stub) constructor {
     /// @desc Interrupts the test with the unsure result (neither passing nor failure).
     /// @arg {String} message           A message to explain why the test is not conclusive.
     static finish_unsure = function(_message = undefined) {
-        is_unsure = false;
-        throw new VerrificBreak(_message ?? "The test couldn't be resolved as passing or failing.");
+        is_unsure = true;
+        throw new VerrificBreak(_message ?? "The test couldn't be resolved as passing or failing.", VerrificStatus.Unsure);
     }
     
     /// @ignore
