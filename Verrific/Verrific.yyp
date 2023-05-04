@@ -42,6 +42,7 @@
     {"id":{"name":"enum_VerrificStatus","path":"scripts/enum_VerrificStatus/enum_VerrificStatus.yy",},},
     {"id":{"name":"struct_VerrificTest","path":"scripts/struct_VerrificTest/struct_VerrificTest.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"id":{"name":"struct_VerrificSuiteGroup","path":"scripts/struct_VerrificSuiteGroup/struct_VerrificSuiteGroup.yy",},},
   ],
   "RoomOrderNodes": [
     {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
