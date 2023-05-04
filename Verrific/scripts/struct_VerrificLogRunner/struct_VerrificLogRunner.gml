@@ -1,6 +1,6 @@
 /// @func VerrificLogRunner(root)
 /// @desc A Verrific tree visitor that runs the tests and reports their outcomes in the log tool.
-/// @arg {Struct.VerrificTreeNode} root         The root of the Verrific runtime tree.
+/// @arg {Struct.VerrificSuiteNode} root        The root of the Verrific runtime tree.
 function VerrificLogRunner(_root) : VerrificTreeVisitor(_root) constructor {
     
     // Reports the number of tests found at start

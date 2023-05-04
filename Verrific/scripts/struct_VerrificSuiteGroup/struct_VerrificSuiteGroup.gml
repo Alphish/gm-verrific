@@ -2,6 +2,7 @@
 /// @desc A Verrific suite that groups other suites together.
 /// @arg {String} description           The description of the suite group.
 function VerrificSuiteGroup(_description) : VerrificSuite(_description) constructor {
+    
     /// @func create(description)
     /// @desc Creates a Verrific suite group with a given description.
     /// @arg {String} description       The description of the suite group.

@@ -1,7 +1,8 @@
 /// @func VerrificTreeLoader(root)
 /// @desc A Verrific tree visitor that searches and prepares all the suites and tests, within the given root suite.
-/// @arg {Struct.VerrificSuiteNode} root        The root of the Verrific runtime tree to explore.
+/// @arg {Struct.VerrificSuiteNode} root        The root of the Verrific runtime tree.
 function VerrificTreeLoader(_root) : VerrificTreeVisitor(_root) constructor {
+    
     /// @func visit_suite(suite)
     /// @desc Explores the test suite in the given Verrific suite node.
     /// @arg {Struct.VerrificSuiteNode} suite

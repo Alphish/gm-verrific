@@ -1,6 +1,6 @@
 /// @func VerrificTreeVisitor(root)
 /// @desc A parent struct for processing a Verrific runtime tree node by node.
-/// @arg {Struct.VerrificTreeNode} root         The root of the Verrific runtime tree.
+/// @arg {Struct.VerrificSuiteNode} root        The root of the Verrific runtime tree.
 function VerrificTreeVisitor(_root) constructor {
     root = _root;
     is_started = false;
@@ -166,16 +166,16 @@ function VerrificTreeVisitor(_root) constructor {
         // no special logic for entering a test node
     }
     
-    /// @func visit_test(suite)
+    /// @func visit_test(test)
     /// @desc The core processing logic to perform when visiting a Verrific test node. Returns whether visiting the node has finished or not.
-    /// @arg {Struct.VerrificSuiteNode} test
+    /// @arg {Struct.VerrificTestNode} test
     /// @returns {Bool}
     static visit_test = function(_test) {
         // no special logic for visiting a test node
         return true;
     }
     
-    /// @func enter_test(suite)
+    /// @func exit_test(suite)
     /// @desc A processing logic to perform when exiting a Verrific test node.
     /// @arg {Struct.VerrificTestNode} test
     static exit_test = function(_test) {
