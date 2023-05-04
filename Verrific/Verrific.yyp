@@ -30,6 +30,7 @@
     {"id":{"name":"struct_VerrificAsserter","path":"scripts/struct_VerrificAsserter/struct_VerrificAsserter.yy",},},
     {"id":{"name":"struct_VerrificFailure","path":"scripts/struct_VerrificFailure/struct_VerrificFailure.yy",},},
     {"id":{"name":"struct_VerrificTestStub","path":"scripts/struct_VerrificTestStub/struct_VerrificTestStub.yy",},},
+    {"id":{"name":"struct_VerrificNumericAssertion","path":"scripts/struct_VerrificNumericAssertion/struct_VerrificNumericAssertion.yy",},},
     {"id":{"name":"struct_VerrificSuite","path":"scripts/struct_VerrificSuite/struct_VerrificSuite.yy",},},
     {"id":{"name":"struct_VerrificMethodTest","path":"scripts/struct_VerrificMethodTest/struct_VerrificMethodTest.yy",},},
     {"id":{"name":"struct_VerrificTestRun","path":"scripts/struct_VerrificTestRun/struct_VerrificTestRun.yy",},},

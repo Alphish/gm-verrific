@@ -134,7 +134,7 @@ function VerrificAsserter(_run) constructor {
     }
     
     /// @func assert_is_plus_infinity(value,[onfailure])
-    /// @desc Asserts that a given value is plus infinity.
+    /// @desc Asserts that a given value is +infinity.
     /// @arg {Any} value            The value to assert.
     /// @arg {String} onfailure     A custom message to show in case of a failure.
     static assert_is_plus_infinity = function(_value, _onfailure = undefined) {
@@ -142,7 +142,7 @@ function VerrificAsserter(_run) constructor {
     }
     
     /// @func assert_is_minus_infinity(value,[onfailure])
-    /// @desc Asserts that a given value is minus infinity.
+    /// @desc Asserts that a given value is -infinity.
     /// @arg {Any} value            The value to assert.
     /// @arg {String} onfailure     A custom message to show in case of a failure.
     static assert_is_minus_infinity = function(_value, _onfailure = undefined) {
@@ -212,11 +212,28 @@ function VerrificAsserter(_run) constructor {
     }
 
     /// @func assert_is_real(value,[onfailure])
-    /// @desc Asserts that a given value is a real number.
+    /// @desc Asserts that a given value is a real value, other than a 64-bit integer.
     /// @arg {Any} value            The value to assert.
     /// @arg {String} onfailure     A custom message to show in case of a failure.
     static assert_is_real = function(_value, _onfailure = undefined) {
-        return make_type_assertion("real number", is_real(_value), _value, _onfailure);
+        return make_type_assertion("real", is_real(_value), _value, _onfailure);
+    }
+    
+    /// @func assert_is_a_number(value,[onfailure])
+    /// @desc Asserts that a given value is a finite number. For the purposes of assertion, bools don't count as numerics!
+    /// @arg {Any} value            The value to assert.
+    /// @arg {String} onfailure     A custom message to show in case of a failure.
+    static assert_is_a_number = function(_value, _onfailure = undefined) {
+        var _condition = is_numeric(_value) && !is_bool(_value) && !is_nan(_value) && !is_infinity(_value);
+        return make_type_assertion("a number", _condition, _value, _onfailure);
+    }
+
+    /// @func assert_is_numeric(value,[onfailure])
+    /// @desc Asserts that a given value is numeric. For the purposes of assertion, bools don't count as numerics!
+    /// @arg {Any} value            The value to assert.
+    /// @arg {String} onfailure     A custom message to show in case of a failure.
+    static assert_is_numeric = function(_value, _onfailure = undefined) {
+        return make_type_assertion("a number", is_numeric(_value) && !is_bool(_value), _value, _onfailure);
     }
 
     /// @func assert_is_ptr(value,[onfailure])
