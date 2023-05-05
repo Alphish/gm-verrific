@@ -3,7 +3,7 @@ if (instance_number(object_index) > 1)
     throw $"There can only be one instance of {object_get_name(object_index)} at a time.";
 
 // general preparations
-var _suite = new suite_type();
+var _suite = is_callable(suite) ? new suite() : suite;
 root = new VerrificSuiteNode(undefined, 0, _suite);
 loader = new VerrificTreeLoader(root);
 runner = undefined;

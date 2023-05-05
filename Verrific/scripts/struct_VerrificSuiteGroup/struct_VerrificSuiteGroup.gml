@@ -29,6 +29,7 @@ function VerrificSuiteGroup(_description) : VerrificSuite(_description) construc
     /// @func add_group(description)
     /// @desc Adds a Verrific suite subgroup with a given description.
     /// @arg {String} description       The description of the suite group.
+    /// @returns {Struct.VerrificSuiteGroup}
     static add_group = function(_description) {
         var _suite = new VerrificSuiteGroup(_description);
         add_suite(_suite);
