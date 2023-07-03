@@ -1,2 +1,8 @@
 # Ignore GM resource order
 *.resource_order
+
+# Ignore old asset versions
+*.old
+
+#Ignore New Runtime builds
+Verrific/Build/*
