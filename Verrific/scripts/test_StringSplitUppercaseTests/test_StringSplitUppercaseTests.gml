@@ -29,6 +29,12 @@ function StringSplitUppercaseTests(_run, _method) : VerrificMethodTest(_run, _me
         then_output().should_be("Pascal|Case");
     }
     
+    static should_return_one_of_valid_combinations = function() {
+        given_input("SomeThingOrAnother");
+        when_processed();
+        then_output().should_be_one_of(["Some|Thing", "Other|Thing", "Some|Thing|Or|Another"]);
+    }
+    
     // Helpers
     
     input = "";
