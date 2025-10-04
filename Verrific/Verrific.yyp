@@ -60,6 +60,7 @@
     {"id":{"name":"struct_VerrificTreeNode","path":"scripts/struct_VerrificTreeNode/struct_VerrificTreeNode.yy",},},
     {"id":{"name":"struct_VerrificTreeVisitor","path":"scripts/struct_VerrificTreeVisitor/struct_VerrificTreeVisitor.yy",},},
     {"id":{"name":"test_ApproachTests","path":"scripts/test_ApproachTests/test_ApproachTests.yy",},},
+    {"id":{"name":"test_RangeTests","path":"scripts/test_RangeTests/test_RangeTests.yy",},},
     {"id":{"name":"test_StringSplitUppercaseTests","path":"scripts/test_StringSplitUppercaseTests/test_StringSplitUppercaseTests.yy",},},
     {"id":{"name":"test_StringTitlecaseTests","path":"scripts/test_StringTitlecaseTests/test_StringTitlecaseTests.yy",},},
     {"id":{"name":"testsuite_TestableUtilsSuite","path":"scripts/testsuite_TestableUtilsSuite/testsuite_TestableUtilsSuite.yy",},},

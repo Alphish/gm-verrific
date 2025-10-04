@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"test_RangeTests",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"test_RangeTests",
+  "parent":{
+    "name":"Example",
+    "path":"folders/Example.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
