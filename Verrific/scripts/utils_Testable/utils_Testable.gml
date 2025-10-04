@@ -40,3 +40,12 @@ function approach(_current, _target, _amount = 1) {
     else
         return _current + _amount * sign(_diff);
 }
+
+// returns a range of items
+function array_create_range(_from, _count, _step = 1) {
+    var _result = array_create(_count);
+    for (var i = 0; i < _count; i++) {
+        _result[i] = _from + _step * i;
+    }
+    return _result;
+}

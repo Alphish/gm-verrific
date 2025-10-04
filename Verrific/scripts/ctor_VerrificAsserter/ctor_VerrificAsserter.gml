@@ -14,6 +14,7 @@ function VerrificAsserter(_run) constructor {
     /// @desc Confirms the test is asserted in the absence of more specific assertions. Doesn't erase already recorded failures.
     static assert_pass = function() {
         test_run.record_assertion();
+        return true;
     }
     
     /// @func assert_fail(message)
@@ -22,6 +23,7 @@ function VerrificAsserter(_run) constructor {
     static assert_fail = function(_message) {
         test_run.record_assertion();
         test_run.record_failure(_message);
+        return false;
     }
     
     /// @func assert_that(condition, onfailure)
@@ -336,6 +338,31 @@ function VerrificAsserter(_run) constructor {
         return assert_that(_expected == _actual, _onfailure);
     }
     
+    /// @func assert_array_equal(expected,actual)
+    /// @desc Asserts that given arrays have the same items sequence.
+    /// @arg {Any} expected         The expected item sequence.
+    /// @arg {Any} actual           The actual array.
+    static assert_array_equal = function(_expected, _actual) {
+        var _expected_length = array_length(_expected);
+        var _actual_length = array_length(_actual);
+        var _length = min(_expected_length, _actual_length);
+        var _passed = true;
+        for (var i = 0; i < _length; i++) {
+            var _onfailure = $"The item #{i} should be '{_expected[i]}' but is '{_actual[i]}' instead.";
+            _passed = _passed && assert_that(_expected[i] == _actual[i], _onfailure);
+        }
+        if (_expected_length < _actual_length) {
+            assert_fail($"Expected {_expected_length} items, but got {_actual_length} items instead. The first excess item: '{_actual[_expected_length]}'.");
+            _passed = false;
+        }
+        else if (_expected_length > _actual_length) {
+            assert_fail($"Expected {_expected_length} items, but got {_actual_length} items instead. The first missing item: '{_expected[_actual_length]}'.");
+            _passed = false;
+        }
+        
+        return _passed;
+    }
+    
     #endregion
     
     // --------------------
@@ -343,6 +370,35 @@ function VerrificAsserter(_run) constructor {
     // --------------------
     
     #region
+    
+    /// @func assert_is_empty(value)
+    /// @desc Asserts that a given value is empty. Applicable to strings, arrays and structs only.
+    /// @arg {Any} value            The value to check.
+    /// @arg {String} [onfailure]   A custom message to show in case of a failure.
+    static assert_is_empty = function(_value, _onfailure) {
+        if (is_string(_value))
+            return assert_is_empty_string(_value, _onfailure);
+        else if (is_array(_value))
+            return assert_equal(0, array_length(_value), _onfailure ?? $"Expected an empty array, but got {array_length(_value)} items instead.");
+        else if (is_struct(_value))
+            return assert_equal(0, struct_names_count(_value), _onfailure ?? $"Expected an empty struct, but got {struct_names_count(_value)} entries instead.");
+        else
+            return assert_fail($"{_value} is a {typeof(_value)}; as neither a string, an array or a struct, it cannot be checked for emptiness.");
+    }
+    
+    /// @func assert_count(expected,collection)
+    /// @desc Asserts that a given collection has a given elements count. Applicable to arrays and structs only.
+    /// @arg {Real} expected        The expected number of elements.
+    /// @arg {Any} collection       The collection to check.
+    /// @arg {String} onfailure     A custom message to show in case of a failure.
+    static assert_count = function(_expected, _collection, _onfailure) {
+        if (is_array(_collection))
+            return assert_equal(_expected, array_length(_collection), $"Expected a count of {_expected}, but got {array_length(_collection)} instead.");
+        else if (is_struct(_collection))
+            return assert_equal(_expected, struct_names_count(_collection), $"Expected a count of {_expected}, but got {struct_names_count(_collection)} instead.");
+        else
+            return assert_fail($"{_collection} is a {typeof(_collection)}; only collection types as array and struct can have count to check.");
+    }
     
     /// @func assert_is_one_of(items,actual,onfailure)
     /// @desc Asserts that a given value is equal to one of expected values.
