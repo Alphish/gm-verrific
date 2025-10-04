@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"struct_VerrificNumericAssertion",
+  "%Name":"ctor_VerrificAsserter",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"struct_VerrificNumericAssertion",
+  "name":"ctor_VerrificAsserter",
   "parent":{
     "name":"Assertions",
     "path":"folders/_Packages/Alphish/Verrific/Testing/Assertions.yy",
