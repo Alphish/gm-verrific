@@ -34,6 +34,7 @@
     {"id":{"name":"ctrl_VerrificLog","path":"objects/ctrl_VerrificLog/ctrl_VerrificLog.yy",},},
     {"id":{"name":"ui_VerrificLogView","path":"objects/ui_VerrificLogView/ui_VerrificLogView.yy",},},
     {"id":{"name":"rm_Test","path":"rooms/rm_Test/rm_Test.yy",},},
+    {"id":{"name":"ctor_VerrificArrayAssertion","path":"scripts/ctor_VerrificArrayAssertion/ctor_VerrificArrayAssertion.yy",},},
     {"id":{"name":"ctor_VerrificAsserter","path":"scripts/ctor_VerrificAsserter/ctor_VerrificAsserter.yy",},},
     {"id":{"name":"ctor_VerrificNumericAssertion","path":"scripts/ctor_VerrificNumericAssertion/ctor_VerrificNumericAssertion.yy",},},
     {"id":{"name":"ctor_VerrificStringAssertion","path":"scripts/ctor_VerrificStringAssertion/ctor_VerrificStringAssertion.yy",},},
