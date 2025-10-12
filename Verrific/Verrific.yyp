@@ -64,6 +64,7 @@
     {"id":{"name":"test_RangeTests","path":"scripts/test_RangeTests/test_RangeTests.yy",},},
     {"id":{"name":"test_StringSplitUppercaseTests","path":"scripts/test_StringSplitUppercaseTests/test_StringSplitUppercaseTests.yy",},},
     {"id":{"name":"test_StringTitlecaseTests","path":"scripts/test_StringTitlecaseTests/test_StringTitlecaseTests.yy",},},
+    {"id":{"name":"test_StructTests","path":"scripts/test_StructTests/test_StructTests.yy",},},
     {"id":{"name":"testsuite_TestableUtilsSuite","path":"scripts/testsuite_TestableUtilsSuite/testsuite_TestableUtilsSuite.yy",},},
     {"id":{"name":"utils_Testable","path":"scripts/utils_Testable/utils_Testable.yy",},},
   ],

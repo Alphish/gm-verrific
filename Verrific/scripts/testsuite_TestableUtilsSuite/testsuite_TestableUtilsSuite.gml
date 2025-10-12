@@ -11,4 +11,8 @@ function TestableUtilsSuite() : VerrificSuiteGroup("Testable utils tests") const
     with (add_group("Array utils")) {
         add_methods_from(RangeTests);
     }
+    
+    with (add_group("Struct utils")) {
+        add_methods_from(StructTests);
+    }
 }
