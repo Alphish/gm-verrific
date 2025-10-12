@@ -1,7 +1,7 @@
 /// @func VerrificArrayAssertion(asserter,actual)
 /// @desc A struct handling fluent assertions for the given array.
 /// @arg {Struct.VerrificAsserter} asserter     The inner asserter.
-/// @arg {Real} actual                          The array to assert.
+/// @arg {Array} actual                         The array to assert.
 function VerrificArrayAssertion(_asserter, _actual) constructor {
     asserter = _asserter;
     actual = _actual;
@@ -21,17 +21,17 @@ function VerrificArrayAssertion(_asserter, _actual) constructor {
     /// @func should_be_empty([onfailure])
     /// @desc Asserts that the asserted array has no items.
     /// @arg {String} [onfailure]       A custom message to show in case of a failure.
-    static should_be_empty = function() {
+    static should_be_empty = function(_onfailure) {
         if (can_assert)
-            asserter.assert_is_empty(actual);
+            asserter.assert_is_empty(actual, _onfailure);
         
         return self;
     }
     
     /// @func should_have_count(expected,[onfailure])
     /// @desc Asserts that the asserted array has the expected number of items.
-    /// @arg {Real} expected        The expected number of items.
-    /// @arg {String} onfailure     A custom message to show in case of a failure.
+    /// @arg {Real} expected            The expected number of items.
+    /// @arg {String} [onfailure]       A custom message to show in case of a failure.
     static should_have_count = function(_expected, _onfailure = undefined) {
         if (can_assert)
             asserter.assert_count(_expected, actual, _onfailure);

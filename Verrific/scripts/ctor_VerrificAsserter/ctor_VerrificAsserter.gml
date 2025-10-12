@@ -330,9 +330,9 @@ function VerrificAsserter(_run) constructor {
     
     /// @func assert_equal(expected,actual,[onfailure])
     /// @desc Asserts that a given value is equal to another.
-    /// @arg {Any} expected         The expected value.
-    /// @arg {Any} actual           The actual value.
-    /// @arg {String} onfailure     A custom message to show in case of a failure.
+    /// @arg {Any} expected             The expected value.
+    /// @arg {Any} actual               The actual value.
+    /// @arg {String} [onfailure]       A custom message to show in case of a failure.
     static assert_equal = function(_expected, _actual, _onfailure = undefined) {
         _onfailure ??= $"The value should be '{_expected}' but is '{_actual}' instead.";
         return assert_that(_expected == _actual, _onfailure);
@@ -340,8 +340,8 @@ function VerrificAsserter(_run) constructor {
     
     /// @func assert_array_equal(expected,actual)
     /// @desc Asserts that given arrays have the same items sequence.
-    /// @arg {Any} expected         The expected item sequence.
-    /// @arg {Any} actual           The actual array.
+    /// @arg {Array} expected           The expected item sequence.
+    /// @arg {Array} actual             The actual array.
     static assert_array_equal = function(_expected, _actual) {
         var _expected_length = array_length(_expected);
         var _actual_length = array_length(_actual);
@@ -349,7 +349,7 @@ function VerrificAsserter(_run) constructor {
         var _passed = true;
         for (var i = 0; i < _length; i++) {
             var _onfailure = $"The item #{i} should be '{_expected[i]}' but is '{_actual[i]}' instead.";
-            _passed = _passed && assert_that(_expected[i] == _actual[i], _onfailure);
+            _passed = assert_that(_expected[i] == _actual[i], _onfailure) && _passed;
         }
         if (_expected_length < _actual_length) {
             assert_fail($"Expected {_expected_length} items, but got {_actual_length} items instead. The first excess item: '{_actual[_expected_length]}'.");
@@ -371,10 +371,10 @@ function VerrificAsserter(_run) constructor {
     
     #region
     
-    /// @func assert_is_empty(value)
+    /// @func assert_is_empty(value,[onfailure])
     /// @desc Asserts that a given value is empty. Applicable to strings, arrays and structs only.
-    /// @arg {Any} value            The value to check.
-    /// @arg {String} [onfailure]   A custom message to show in case of a failure.
+    /// @arg {Any} value                The value to check.
+    /// @arg {String} [onfailure]       A custom message to show in case of a failure.
     static assert_is_empty = function(_value, _onfailure) {
         if (is_string(_value))
             return assert_is_empty_string(_value, _onfailure);
@@ -386,11 +386,11 @@ function VerrificAsserter(_run) constructor {
             return assert_fail($"{_value} is a {typeof(_value)}; as neither a string, an array or a struct, it cannot be checked for emptiness.");
     }
     
-    /// @func assert_count(expected,collection)
+    /// @func assert_count(expected,collection,[onfailure])
     /// @desc Asserts that a given collection has a given elements count. Applicable to arrays and structs only.
-    /// @arg {Real} expected        The expected number of elements.
-    /// @arg {Any} collection       The collection to check.
-    /// @arg {String} onfailure     A custom message to show in case of a failure.
+    /// @arg {Real} expected            The expected number of elements.
+    /// @arg {Any} collection           The collection to check.
+    /// @arg {String} [onfailure]       A custom message to show in case of a failure.
     static assert_count = function(_expected, _collection, _onfailure) {
         if (is_array(_collection))
             return assert_equal(_expected, array_length(_collection), $"Expected a count of {_expected}, but got {array_length(_collection)} instead.");
@@ -400,13 +400,13 @@ function VerrificAsserter(_run) constructor {
             return assert_fail($"{_collection} is a {typeof(_collection)}; only collection types as array and struct can have count to check.");
     }
     
-    /// @func assert_is_one_of(items,actual,onfailure)
+    /// @func assert_is_one_of(items,actual,[onfailure])
     /// @desc Asserts that a given value is equal to one of expected values.
-    /// @arg {Array} items          The possible expected values.
-    /// @arg {Any} actual           The actual value.
-    /// @arg {String} onfailure     A custom message to show in case of a failure.
+    /// @arg {Array} items              The possible expected values.
+    /// @arg {Any} actual               The actual value.
+    /// @arg {String} [onfailure]       A custom message to show in case of a failure.
     static assert_is_one_of = function(_items, _actual, _onfailure = undefined) {
-        _onfailure ??= $"The value should be oe of '{_items}' but is '{_actual}' instead.";
+        _onfailure ??= $"The value should be one of '{_items}' but is '{_actual}' instead.";
         return assert_that(array_contains(_items, _actual), _onfailure);
     }
     
