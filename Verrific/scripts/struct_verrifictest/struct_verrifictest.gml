@@ -348,6 +348,14 @@ function VerrificTest(_run) constructor {
         return test_asserter.assert_array_equal(_expected, _actual);
     }
     
+    /// @func assert_struct_equal(expected,actual)
+    /// @desc Asserts that given structs have the same entries.
+    /// @arg {Struct} expected          The expected struct entries.
+    /// @arg {Struct} actual            The actual struct entries.
+    static assert_struct_equal = function(_expected, _actual) {
+        return test_asserter.assert_struct_equal(_expected, _actual);
+    }
+    
     #endregion
     
     // --------------------
@@ -380,6 +388,16 @@ function VerrificTest(_run) constructor {
     /// @arg {String} [onfailure]   A custom message to show in case of a failure.
     static assert_is_one_of = function(_items, _actual, _onfailure = undefined) {
         return test_asserter.assert_is_one_of(_items, _actual, _onfailure);
+    }
+    
+    /// @func assert_struct_has_entry(struct,key,value,[onfailure])
+    /// @desc Asserts that a given struct has the expected entry.
+    /// @arg {Struct} struct            The struct to find the entry in.
+    /// @arg {String} key               The key of the expected entry.
+    /// @arg {Any} value                The value of the expected entry.
+    /// @arg {String} [onfailure]       A custom message to show in case of a failure.
+    static assert_struct_has_entry = function(_struct, _key, _value, _onfailure = undefined) {
+        return test_asserter.assert_struct_has_entry(_struct, _key, _value, _onfailure);
     }
     
     #endregion

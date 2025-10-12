@@ -363,6 +363,52 @@ function VerrificAsserter(_run) constructor {
         return _passed;
     }
     
+    /// @func assert_struct_equal(expected,actual)
+    /// @desc Asserts that given structs have the same entries.
+    /// @arg {Struct} expected          The expected struct entries.
+    /// @arg {Struct} actual            The actual struct entries.
+    static assert_struct_equal = function(_expected, _actual) {
+        var _expected_keys = struct_get_names(_expected);
+        var _actual_keys = struct_get_names(_actual);
+        var _common_keys = array_intersection(_expected_keys, _actual_keys);
+        
+        var _expected_count = array_length(_expected_keys);
+        var _actual_count = array_length(_actual_keys);
+        var _common_count = array_length(_common_keys);
+        
+        var _passed = true;
+        
+        if (_expected_count > _common_count) {
+            for (var i = 0; i < _expected_count; i++) {
+                if (struct_exists(_actual, _expected_keys[i]))
+                    continue;
+                
+                assert_fail($"Expected an entry with key '{_expected_keys[i]}', but none was found.");
+            }
+            _passed = false;
+        }
+        
+        if (_actual_count > _common_count) {
+            for (var i = 0; i < _actual_count; i++) {
+                if (struct_exists(_expected, _actual_keys[i]))
+                    continue;
+                
+                assert_fail($"Unexpected entry with key '{_actual_keys[i]}'.");
+            }
+            _passed = false;
+        }
+        
+        for (var i = 0; i < _common_count; i++) {
+            var _key = _common_keys[i];
+            var _expected_value = _expected[$ _key];
+            var _actual_value = _actual[$ _key];
+            var _onfailure = $"The entry '{_key}' should be '{_expected_value}' but is '{_actual_value}' instead.";
+            _passed = assert_that(_expected_value == _actual_value, _onfailure) && _passed;
+        }
+        
+        return _passed;
+    }
+    
     #endregion
     
     // --------------------
@@ -408,6 +454,19 @@ function VerrificAsserter(_run) constructor {
     static assert_is_one_of = function(_items, _actual, _onfailure = undefined) {
         _onfailure ??= $"The value should be one of '{_items}' but is '{_actual}' instead.";
         return assert_that(array_contains(_items, _actual), _onfailure);
+    }
+    
+    /// @func assert_struct_has_entry(struct,key,value,[onfailure])
+    /// @desc Asserts that a given struct has the expected entry.
+    /// @arg {Struct} struct            The struct to find the entry in.
+    /// @arg {String} key               The key of the expected entry.
+    /// @arg {Any} value                The value of the expected entry.
+    /// @arg {String} [onfailure]       A custom message to show in case of a failure.
+    static assert_struct_has_entry = function(_struct, _key, _value, _onfailure = undefined) {
+        if (!struct_exists(_struct, _key))
+            return assert_fail(_onfailure ?? $"The struct doesn't contain the expected entry '{_key}'.");
+        else
+            return assert_equal(_value, _struct[$ _key], _onfailure ?? $"The entry of '{_key}' should be '{_value}' but is '{_struct[$ _key]}' instead.");
     }
     
     #endregion
