@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"ctor_VerrificTestRun",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ctor_VerrificTestRun",
+  "parent":{
+    "name":"Runs",
+    "path":"folders/_Packages/Alphish/Verrific/Testing/Runs.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

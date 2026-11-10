@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"ctor_VerrificException",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ctor_VerrificException",
+  "parent":{
+    "name":"Verrific",
+    "path":"folders/_Packages/Alphish/Verrific.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

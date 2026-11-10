@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"ctor_VerrificTestCase",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ctor_VerrificTestCase",
+  "parent":{
+    "name":"Definitions",
+    "path":"folders/_Packages/Alphish/Verrific/Definitions.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
