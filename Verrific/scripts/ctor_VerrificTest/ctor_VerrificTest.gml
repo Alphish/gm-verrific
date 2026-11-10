@@ -58,8 +58,8 @@ function VerrificTest() constructor {
     // Assertions
     // ----------
     
-    assert_pass = function() {
-        return asserter.assert_pass(run);
+    assert_confirm = function() {
+        return asserter.assert_confirm(run);
     }
     
     assert_fail = function(_failure, _failargs) {

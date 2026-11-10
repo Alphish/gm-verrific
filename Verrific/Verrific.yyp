@@ -28,7 +28,8 @@
   },
   "name":"Verrific",
   "resources":[
-    {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"id":{"name":"ctrl_Demo","path":"objects/ctrl_Demo/ctrl_Demo.yy",},},
+    {"id":{"name":"rm_Demo","path":"rooms/rm_Demo/rm_Demo.yy",},},
     {"id":{"name":"ctor_VerrificAsserter","path":"scripts/ctor_VerrificAsserter/ctor_VerrificAsserter.yy",},},
     {"id":{"name":"ctor_VerrificCallbackTestCase","path":"scripts/ctor_VerrificCallbackTestCase/ctor_VerrificCallbackTestCase.yy",},},
     {"id":{"name":"ctor_VerrificException","path":"scripts/ctor_VerrificException/ctor_VerrificException.yy",},},
@@ -43,7 +44,7 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"roomId":{"name":"rm_Demo","path":"rooms/rm_Demo/rm_Demo.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[
