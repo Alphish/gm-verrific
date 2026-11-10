@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"ctor_VerrificTestCallbackAlgorithm",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ctor_VerrificTestCallbackAlgorithm",
+  "parent":{
+    "name":"Algorithms",
+    "path":"folders/_Packages/Alphish/Verrific/Testing/Algorithms.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
