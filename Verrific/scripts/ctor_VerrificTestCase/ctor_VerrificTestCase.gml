@@ -1,10 +1,6 @@
 /// @desc A test case to potentially execute.
 /// @arg {String} title     The title of the test case.
-function VerrificTestCase(_title) constructor {
-    /// @desc The title of the test case.
-    /// @returns {String}
-    title = _title;
-    
+function VerrificTestCase(_title) : VerrificTestItem(_title) constructor {
     /// @desc Prepares a test run instance suitable to manage the test execution.
     /// @returns {Struct.VerrificTestRun}
     static create_test_run = function() {
