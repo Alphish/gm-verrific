@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"ctor_VerrificTestDiscoverer",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ctor_VerrificTestDiscoverer",
+  "parent":{
+    "name":"Hierarchy",
+    "path":"folders/_Packages/Alphish/Verrific/Hierarchy.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
